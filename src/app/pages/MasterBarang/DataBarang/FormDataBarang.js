@@ -90,7 +90,7 @@ export class FormDataBarang extends Component {
               </Form.Row>
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Gambar Barang</Form.Label>
-                <Form.Control type="file" />
+                <Form.Control type="file" accept="image/*" />
               </Form.Group>
             </Form>
           </Modal.Body>

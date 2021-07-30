@@ -1,9 +1,12 @@
-// Form is based on Formik
-// Data validation is based on Yup
-// Please, be familiar with article first:
-// https://hackernoon.com/react-form-validation-with-formik-and-yup-8b76bda62e10
 import React, { useState } from "react";
-import { Modal, Button, Form, Col } from "react-bootstrap";
+import {
+  Modal,
+  Button,
+  Form,
+  Col,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 import SVG from "react-inlinesvg";
 import { toAbsoluteUrl } from "../../../../_metronic/_helpers";
 import alert from "sweetalert2";
@@ -11,22 +14,18 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 export function EditBarangMasuk({ data }) {
-  const SuratKelahiranSchema = Yup.object({
-    NamaLengkap: Yup.string().required("Nama Lengkap tidak boleh kosong"),
-    NIK: Yup.string().required("NIK tidak boleh kosong"),
-    NomorKK: Yup.string().required("Nomor KK tidak boleh kosong"),
-    TempatLahir: Yup.string().required("Tempat Lahir tidak boleh kosong"),
-    Hari: Yup.string().required("Hari tidak boleh kosong"),
-    TanggalLahir: Yup.mixed()
-      .nullable(false)
-      .required("Tanggal Lahir tidak boleh kosong"),
-    JK: Yup.string().required("Jenis Kelamin tidak boleh kosong"),
-    JenisKelahiran: Yup.string().required("Jenis Kelahiran tidak boleh kosong"),
-    'Nama Ayah': Yup.string().required("Nama Ayah tidak boleh kosong"),
-    'Nama Ibu': Yup.string().required("Nama Ibu tidak boleh kosong"),
-    Agama: Yup.string().required("Agama tidak boleh kosong"),
-    Kewarganegaraan: Yup.string().required("Kewarganegaraan tidak boleh kosong"),
-    Alamat: Yup.string().required("Alamat tidak boleh kosong"),
+  const BarangMasukSchema = Yup.object({
+    IdTransaksi: Yup.string().required("ID Transaksi tidak boleh kosong"),
+    Tanggal: Yup.string().required("Tanggal tidak boleh kosong"),
+    KodeBarang: Yup.string().required("Kode Barang tidak boleh kosong"),
+    NamaBarang: Yup.string().required("Nama Barang tidak boleh kosong"),
+    JenisBarang: Yup.string().required("Jenis Barang tidak boleh kosong"),
+    SatuanBarang: Yup.string().required("Satuan Barang tidak boleh kosong"),
+    GambarBarang: Yup.string().required(
+      "Format Gambar JPG dan PNG, ukuran maksimal 100KB"
+    ),
+    HargaBeli: Yup.string().required("Harga Beli tidak boleh kosong"),
+    Stok: Yup.string().required("Stok tidak boleh kosong"),
   });
 
   const [show, setShow] = useState(false);
@@ -43,9 +42,9 @@ export function EditBarangMasuk({ data }) {
 
   const handleClick = () => {
     alert.fire({
-      title: 'Success',
-      icon: 'success',
-      text: 'Perubahan telah tersimpan.',
+      title: "Success",
+      icon: "success",
+      text: "Perubahan telah tersimpan.",
     });
     setShow(false);
   };
@@ -53,13 +52,13 @@ export function EditBarangMasuk({ data }) {
   return (
     <>
       <a
-        title="Ubah Data Barang"
+        title="Ubah Barang Masuk"
         className="btn btn-icon btn-light btn-hover-warning btn-sm m-3"
         onClick={handleShow}
       >
         <span className="svg-icon svg-icon-md svg-icon-warning">
           <SVG
-            title="Ubah Data Barang"
+            title="Ubah Barang Masuk"
             src={toAbsoluteUrl("/media/svg/icons/Communication/Write.svg")}
           />
         </span>
@@ -72,12 +71,12 @@ export function EditBarangMasuk({ data }) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">
-            Edit Surat Kematian
+            Edit Barang Masuk
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Formik
-            validationSchema={SuratKelahiranSchema}
+            validationSchema={BarangMasukSchema}
             onSubmit={handleSubmit}
             initialValues={data}
           >
@@ -91,261 +90,160 @@ export function EditBarangMasuk({ data }) {
             }) => (
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                  <Form.Label>Nama Lengkap</Form.Label>
+                  <Form.Label>ID Transaksi</Form.Label>
                   <Form.Control
-                    type="text"
-                    name="NamaLengkap"
-                    value={values.NamaLengkap}
+                    placeholder="Masukkan ID Transaksi"
+                    value={values.IdTransaksi}
                     onChange={handleChange}
-                    isInvalid={!!errors.NamaLengkap}
-                  />
+                    isInvalid={!!errors.IdTransaksi}
+                  ></Form.Control>
                   <Form.Control.Feedback type="invalid">
-                    {errors.NamaLengkap}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label>NIK</Form.Label>
-                  <Form.Control
-                    type="number"
-                    name="NIK"
-                    readOnly
-                    value={values.NIK}
-                    onChange={handleChange}
-                    placeholder="Nomor Induk Kependudukan"
-                    isInvalid={!!errors.NIK}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.NIK}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label>No KK</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="NomorKK"
-                    value={values.NomorKK}
-                    onChange={handleChange}
-                    readOnly
-                    placeholder="Nomor Kartu keluarga"
-                    isInvalid={!!errors.NomorKK}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.NomorKK}
+                    {errors.IdTransaksi}
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>Tempat Lahir</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="TempatLahir"
-                        value={values.TempatLahir}
-                        onChange={handleChange}
-                        placeholder="Tempat Lahir"
-                        isInvalid={!!errors.TempatLahir}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.TempatLahir}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Hari</Form.Label>
-                      <Form.Control
-                        as="select"
-                        className="mr-2"
-                        value={values.Hari}
-                        onChange={handleChange}
-                        custom
-                      >
-                        <option hidden>
-                          Hari
-                        </option>
-                        <option value="0">Minggu</option>
-                        <option value="1">Senin</option>
-                        <option value="2">Selasa</option>
-                        <option value="3">Rabu</option>
-                        <option value="4">Kamis</option>
-                        <option value="5">Jumat</option>
-                        <option value="6">Sabtu</option>
-                      </Form.Control>
-                      <Form.Control.Feedback type="invalid">
-                        {errors.Hari}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Tanggal Lahir</Form.Label>
-                      <Form.Control
-                        type="date"
-                        name="TanggalLahir"
-                        value={values.TanggalLahir}
-                        onChange={handleChange}
-                        readOnly
-                        placeholder="Tanggal Lahir"
-                        isInvalid={!!errors.TanggalLahir}
-                      />
-                    </Form.Group>
-                  </Form.Row>
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>Jenis Kelamin</Form.Label>
-                      <Form.Control
-                        as="select"
-                        name="JK"
-                        value={values.JK}
-                        onChange={handleChange}
-                        placeholder="Jenis Kelamin"
-                      >
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
-                      </Form.Control>
-                      <Form.Control.Feedback type="invalid">
-                        {errors.JK}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Anak yang ke-</Form.Label>
-                      <Form.Control
+                  <Form.Group as={Col}>
+                    <Form.Label>Tanggal Transaksi</Form.Label>
+                    <Form.Control
+                      type="date"
+                      placeholder="Tanggal Transaksi"
+                      value={values.Tanggal}
+                      onChange={handleChange}
+                      isInvalid={!!errors.Tanggal}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.Tanggal}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Kode Barang</Form.Label>
+                    <Form.Control
+                      defaultValue=""
+                      placeholder="Masukkan Kode Barang"
+                      value={values.KodeBarang}
+                      onChange={handleChange}
+                      isInvalid={!!errors.KodeBarang}
+                    ></Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.KodeBarang}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>Nama Barang</Form.Label>
+                    <Form.Control
+                      placeholder="Masukkan Nama Barang"
+                      value={values.NamaBarang}
+                      onChange={handleChange}
+                      isInvalid={!!errors.NamaBarang}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.NamaBarang}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Jenis Barang</Form.Label>
+                    <Form.Control
+                      as="select"
+                      className="my-1 mr-sm-2"
+                      id="inlineFormCustomSelectPref"
+                      placeholder="Masukkan Jenis Barang"
+                      value={values.JenisBarang}
+                      onChange={handleChange}
+                      isInvalid={!!errors.JenisBarang}
+                    >
+                      <option value="">Pilih Jenis Barang</option>
+                      <option value="1">Peralatan Sekolah</option>
+                      <option value="2">Alat Masak</option>
+                      <option value="3">P3K</option>
+                      <option value="4">Alat Mandi</option>
+                    </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.JenisBarang}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>Jenis Satuan</Form.Label>
+                    <Form.Control
+                      as="select"
+                      placeholder="Masukkan Jenis Barang"
+                      value={values.SatuanBarang}
+                      onChange={handleChange}
+                      isInvalid={!!errors.SatuanBarang}
+                    >
+                      <option value="">Pilih Jenis Satuan</option>
+                      <option value="1">Meter</option>
+                      <option value="2">Kilogram</option>
+                      <option value="3">Gram</option>
+                      <option value="4">Lembar</option>
+                    </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.SatuanBarang}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group as={Col} controlId="formFile" className="mb-3">
+                    <Form.Label>Gambar Barang</Form.Label>
+                    <Form.Control
+                      type="file"
+                      accept="image/*"
+                      value={values.GambarBarang}
+                      onChange={handleChange}
+                      isInvalid={!!errors.GambarBarang}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.GambarBarang}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>Harga Beli</Form.Label>
+                    <InputGroup className="mb-3">
+                      <InputGroup.Prepend>
+                        <InputGroup.Text>Rp.</InputGroup.Text>
+                      </InputGroup.Prepend>
+                      <FormControl
                         type="number"
-                        name="AnakKe"
-                        value=""
+                        placeholder="Masukkan Harga Beli"
+                        value={values.HargaBeli}
                         onChange={handleChange}
-                        readOnly
-                        placeholder="Anak ke:"
+                        isInvalid={!!errors.HargaBeli}
                       />
-                    </Form.Group>
-                  </Form.Row>
-                  <Form.Group>
-                    <Form.Label>Jenis Kelahiran</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="JenisKelahiran"
-                      // value={values.JenisKelahiran}
-                      onChange={handleChange}
-                      placeholder="Jenis Kelahiran"
-                      isInvalid={!!errors.JenisKelahiran}
-                    />
+                    </InputGroup>
                     <Form.Control.Feedback type="invalid">
-                      {errors.JenisKelahiran}
+                      {errors.HargaBeli}
                     </Form.Control.Feedback>
                   </Form.Group>
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>Nama Lengkap Ayah</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="Nama Ayah"
-                        value={values.['Nama Ayah']}
-                        onChange={handleChange}
-                        readOnly
-                        placeholder="Nama Lengkap Ayah"
-                        isInvalid={!!errors.['Nama Ayah']}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.['Nama Ayah']}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Nomor Induk Kependudukan Ayah</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="NIK"
-                        value={values.NIK}
-                        onChange={handleChange}
-                        readOnly
-                        placeholder="Nomor Induk Kependudukan Ayah"
-                        isInvalid={!!errors.NIK}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.NIK}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                  </Form.Row>
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>Nama Lengkap Ibu</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="NamaIbu"
-                        value={values.['Nama Ibu']}
-                        onChange={handleChange}
-                        readOnly
-                        placeholder="Nama Lengkap Ibu"
-                        isInvalid={!!errors.['Nama Ibu']}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.['Nama Ibu']}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Nomor Induk Kependudukan Ibu</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="NIK"
-                        value={values.NIK}
-                        onChange={handleChange}
-                        readOnly
-                        placeholder="Nomor Induk Kependudukan Ayah"
-                        isInvalid={!!errors.NIK}
-                      />
-                    </Form.Group>
-                  </Form.Row>
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>Agama</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="Agama"
-                        value={values.Agama}
-                        onChange={handleChange}
-                        placeholder="Agama"
-                        isInvalid={!!errors.Agama}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.Agama}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                      <Form.Label>Kewarganegaraan</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="Kewarganegaraan"
-                        // value={values.Kewarganegaraan}
-                        onChange={handleChange}
-                        placeholder="Kewarganegaraan"
-                        isInvalid={!!errors.Kewarganegaraan}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.Kewarganegaraan}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                  </Form.Row>
-                  <Form.Group>
-                    <Form.Label>Alamat</Form.Label>
+                  <Form.Group as={Col} controlId="formFile" className="mb-3">
+                    <Form.Label>Stok</Form.Label>
                     <Form.Control
-                      value={values.Alamat}
-                      name="Alamat"
+                      defaultValue=""
+                      type="number"
+                      placeholder="Masukkan Stok"
+                      value={values.Stok}
                       onChange={handleChange}
-                      placeholder="Alamat"
-                      isInvalid={!!errors.Alamat}
-                      as="textarea"
-                    />
+                      isInvalid={!!errors.Stok}
+                    ></Form.Control>
                     <Form.Control.Feedback type="invalid">
-                      {errors.Alamat}
+                      {errors.Stok}
                     </Form.Control.Feedback>
                   </Form.Group>
-                
+                </Form.Row>
               </Form>
             )}
           </Formik>
         </Modal.Body>
         <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Batal
-                  </Button>
-                  <Button variant="primary" onClick={handleClick}>
-                    Simpan
-                  </Button>
-                </Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Batal
+          </Button>
+          <Button variant="primary" onClick={handleClick}>
+            Simpan
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );

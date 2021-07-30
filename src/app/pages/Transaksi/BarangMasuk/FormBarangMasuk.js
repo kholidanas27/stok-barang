@@ -93,16 +93,6 @@ export class FormBarangMasuk extends Component {
                     <option value="4">Alat Mandi</option>
                   </Form.Control>
                 </Form.Group>
-                <Form.Group as={Col}>
-                  <Form.Label>Jenis Satuan</Form.Label>
-                  <Form.Control as="select" placeholder="Masukkan Jenis Barang">
-                    <option value="">Pilih Jenis Satuan</option>
-                    <option value="1">Meter</option>
-                    <option value="2">Kilogram</option>
-                    <option value="3">Gram</option>
-                    <option value="4">Lembar</option>
-                  </Form.Control>
-                </Form.Group>
               </Form.Row>
               <Form.Row>
                 <Form.Group as={Col}>

@@ -39,7 +39,7 @@ export class DeleteBarangKeluar extends Component {
       if (result.value) {
         swalWithBootstrapButtons.fire(
           "Hapus!",
-          "Pengajuan Anda berhasil dihapus.",
+          "Barang Keluar berhasil dihapus.",
           "success"
         );
       } else if (
@@ -48,7 +48,7 @@ export class DeleteBarangKeluar extends Component {
       ) {
         swalWithBootstrapButtons.fire(
           "Batal",
-          "Pengajuan Anda tidak dihapus :)",
+          "Barang Keluar Anda tidak dihapus :)",
           "error"
         );
       }
@@ -59,13 +59,13 @@ export class DeleteBarangKeluar extends Component {
       <>
         <span>
           <a
-            title="Hapus Pengajuan"
+            title="Hapus Barang Keluar"
             className="btn btn-icon btn-light btn-hover-danger btn-sm mx-3"
             onClick={this.HandleClick1}
           >
             <span className="svg-icon svg-icon-md svg-icon-danger">
               <SVG
-                title="Hapus Pengajuan"
+                title="Hapus Barang Keluar"
                 src={toAbsoluteUrl("/media/svg/icons/General/Trash.svg")}
               />
             </span>
