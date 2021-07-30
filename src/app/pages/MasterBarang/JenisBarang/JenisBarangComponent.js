@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardHeaderToolbar,
 } from "../../../../_metronic/_partials/controls";
+import "react-bootstrap";
 import { Table } from "./DataTable/DataTables";
 import { FormJenisBarang } from "./FormJenisBarang";
 
