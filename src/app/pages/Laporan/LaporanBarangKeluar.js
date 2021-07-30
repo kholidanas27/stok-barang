@@ -5,9 +5,9 @@ import {
   CardHeader,
   CardHeaderToolbar,
 } from "../../../_metronic/_partials/controls";
-import "react-bootstrap";
+import { ContentBarangKeluar } from "./ContentBarangKeluar";
 
-export class LaporanKeluar extends Component {
+export class LaporanBarangKeluar extends Component {
   render() {
     return (
       <>
@@ -15,7 +15,9 @@ export class LaporanKeluar extends Component {
           <CardHeader title="Laporan Barang Keluar">
             <CardHeaderToolbar></CardHeaderToolbar>
           </CardHeader>
-          <CardBody></CardBody>
+          <CardBody>
+            <ContentBarangKeluar />
+          </CardBody>
         </Card>
       </>
     );
