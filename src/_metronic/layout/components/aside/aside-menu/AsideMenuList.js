@@ -33,12 +33,6 @@ export function AsideMenuList({ layoutProps }) {
         </li>
         {/*end::1 Level*/}
 
-        {/* Components */}
-
-        {/* Material-UI */}
-        {/*begin::1 Level*/}
-
-        {/* Administrasi */}
         {/*begin::1 Level*/}
         <li
           className={`menu-item menu-item-submenu ${getMenuItemActive(
@@ -48,7 +42,7 @@ export function AsideMenuList({ layoutProps }) {
           aria-haspopup="true"
           data-menu-toggle="hover"
         >
-          <NavLink className="menu-link menu-toggle" to="/layanan-administrasi">
+          <NavLink className="menu-link menu-toggle" to="/master-barang">
             <span className="svg-icon menu-icon">
               <SVG
                 src={toAbsoluteUrl(
@@ -70,100 +64,40 @@ export function AsideMenuList({ layoutProps }) {
 
               {/*begin::2 Level*/}
               <li
-                className={`menu-item ${getMenuItemActive("/surat-kelahiran")}`}
+                className={`menu-item ${getMenuItemActive("/data-barang")}`}
                 aria-haspopup="true"
               >
-                <NavLink className="menu-link" to="/surat-kelahiran">
+                <NavLink className="menu-link" to="/data-barang">
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Surat Keterangan Kelahiran</span>
+                  <span className="menu-text">Data Barang</span>
                 </NavLink>
               </li>
               {/*end::2 Level*/}
 
               {/*begin::2 Level*/}
               <li
-                className={`menu-item ${getMenuItemActive("/surat-kematian")}`}
+                className={`menu-item ${getMenuItemActive("/jenis-barang")}`}
                 aria-haspopup="true"
               >
-                <NavLink className="menu-link" to="/surat-kematian">
+                <NavLink className="menu-link" to="/jenis-barang">
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Surat Kematian</span>
-                </NavLink>
-              </li>
-              {/*end::2 Level*/}
-
-              {/*begin::2 Level*/}
-              <li
-                className={`menu-item ${getMenuItemActive(
-                  "/surat-permohonanKK"
-                )}`}
-                aria-haspopup="true"
-              >
-                <NavLink className="menu-link" to="/surat-permohonanKK">
-                  <i className="menu-bullet menu-bullet-dot">
-                    <span />
-                  </i>
-                  <span className="menu-text">
-                    Surat Permohonan Kartu Keluarga
-                  </span>
-                </NavLink>
-              </li>
-
-              <li
-                className={`menu-item ${getMenuItemActive(
-                  "/surat-keterangan-usaha"
-                )}`}
-                aria-haspopup="true"
-              >
-                <NavLink className="menu-link" to="/surat-keterangan-usaha">
-                  <i className="menu-bullet menu-bullet-dot">
-                    <span />
-                  </i>
-                  <span className="menu-text">Surat Keterangan Usaha</span>
-                </NavLink>
-              </li>
-
-              <li
-                className={`menu-item ${getMenuItemActive("/error/error-v6")}`}
-                aria-haspopup="true"
-              >
-                <NavLink className="menu-link" to="/surat/pengantar-KIP">
-                  <i className="menu-bullet menu-bullet-dot">
-                    <span />
-                  </i>
-                  <span className="menu-text">Surat Pengantar KTP</span>
-                </NavLink>
-              </li>
-              {/*end::2 Level*/}
-
-              {/*begin::2 Level*/}
-              <li
-                className={`menu-item ${getMenuItemActive("/error/error-v6")}`}
-                aria-haspopup="true"
-              >
-                <NavLink className="menu-link" to="/surat/meninggal-dunia">
-                  <i className="menu-bullet menu-bullet-dot">
-                    <span />
-                  </i>
-                  <span className="menu-text">
-                    Surat Keterangan Meninggal Dunia
-                  </span>
+                  <span className="menu-text">Jenis Barang</span>
                 </NavLink>
               </li>
               {/*end::2 Level*/}
               <li
-                className={`menu-item ${getMenuItemActive("/error/error-v6")}`}
+                className={`menu-item ${getMenuItemActive("/satuan-barang")}`}
                 aria-haspopup="true"
               >
-                <NavLink className="menu-link" to="/surat/biodata-penduduk">
+                <NavLink className="menu-link" to="/satuan-barang">
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Surat Biodata Penduduk</span>
+                  <span className="menu-text">Satuan Barang</span>
                 </NavLink>
               </li>
               {/*end::2 Level*/}
@@ -182,7 +116,7 @@ export function AsideMenuList({ layoutProps }) {
           aria-haspopup="true"
           data-menu-toggle="hover"
         >
-          <NavLink className="menu-link menu-toggle" to="/aduan">
+          <NavLink className="menu-link menu-toggle" to="/transaksi">
             <span className="svg-icon menu-icon">
               <SVG
                 src={toAbsoluteUrl(
@@ -204,51 +138,28 @@ export function AsideMenuList({ layoutProps }) {
 
               {/*begin::2 Level*/}
               <li
-                className={`menu-item ${getMenuItemActive(
-                  "/aduan/KinerjaPerangkatDesa"
-                )}`}
+                className={`menu-item ${getMenuItemActive("/barang-masuk")}`}
                 aria-haspopup="true"
               >
-                <NavLink className="menu-link" to="/aduan/KinerjaPerangkatDesa">
+                <NavLink className="menu-link" to="/barang-masuk">
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Kinerja Perangkat Desa</span>
+                  <span className="menu-text">Barang Masuk</span>
                 </NavLink>
               </li>
               {/*end::2 Level*/}
 
               {/*begin::2 Level*/}
               <li
-                className={`menu-item ${getMenuItemActive(
-                  "/aduan/PelayananAdministrasi"
-                )}`}
+                className={`menu-item ${getMenuItemActive("/barang-keluar")}`}
                 aria-haspopup="true"
               >
-                <NavLink
-                  className="menu-link"
-                  to="/aduan/PelayananAdministrasi"
-                >
+                <NavLink className="menu-link" to="/barang-keluar">
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Pelayanan Administrasi</span>
-                </NavLink>
-              </li>
-              {/*end::2 Level*/}
-
-              {/*begin::2 Level*/}
-              <li
-                className={`menu-item ${getMenuItemActive(
-                  "/aduan/KritikSaran"
-                )}`}
-                aria-haspopup="true"
-              >
-                <NavLink className="menu-link" to="/aduan/KritikSaran">
-                  <i className="menu-bullet menu-bullet-dot">
-                    <span />
-                  </i>
-                  <span className="menu-text">Kritik dan Saran</span>
+                  <span className="menu-text">Barang Keluar</span>
                 </NavLink>
               </li>
               {/*end::2 Level*/}
@@ -267,7 +178,7 @@ export function AsideMenuList({ layoutProps }) {
           aria-haspopup="true"
           data-menu-toggle="hover"
         >
-          <NavLink className="menu-link menu-toggle" to="/bumdes">
+          <NavLink className="menu-link menu-toggle" to="/laporan">
             <span className="svg-icon menu-icon">
               <SVG
                 src={toAbsoluteUrl(
@@ -290,15 +201,15 @@ export function AsideMenuList({ layoutProps }) {
               {/*begin::2 Level*/}
               <li
                 className={`menu-item ${getMenuItemActive(
-                  "/bumdes/basis-data-umkm"
+                  "/laporan-stokbarang"
                 )}`}
                 aria-haspopup="true"
               >
-                <NavLink className="menu-link" to="/bumdes/basis-data-umkm">
+                <NavLink className="menu-link" to="/laporan-stokbarang">
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Basis Data UMKM</span>
+                  <span className="menu-text">Stok Barang</span>
                 </NavLink>
               </li>
               {/*end::2 Level*/}
@@ -306,15 +217,15 @@ export function AsideMenuList({ layoutProps }) {
               {/*begin::2 Level*/}
               <li
                 className={`menu-item ${getMenuItemActive(
-                  "/bumdes/produk-umkm"
+                  "/laporan-barangmasuk"
                 )}`}
                 aria-haspopup="true"
               >
-                <NavLink className="menu-link" to="/bumdes/produk-umkm">
+                <NavLink className="menu-link" to="/laporan-barangmasuk">
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Produk UMKM</span>
+                  <span className="menu-text">Barang Masuk</span>
                 </NavLink>
               </li>
               {/*end::2 Level*/}
@@ -322,15 +233,15 @@ export function AsideMenuList({ layoutProps }) {
               {/*begin::2 Level*/}
               <li
                 className={`menu-item ${getMenuItemActive(
-                  "/bumdes/produk-bumdes"
+                  "/laporan-barangkeluar"
                 )}`}
                 aria-haspopup="true"
               >
-                <NavLink className="menu-link" to="/bumdes/produk-bumdes">
+                <NavLink className="menu-link" to="/laporan-barangkeluar">
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Produk BUMDES</span>
+                  <span className="menu-text">Barang Keluar</span>
                 </NavLink>
               </li>
               {/*end::2 Level*/}
