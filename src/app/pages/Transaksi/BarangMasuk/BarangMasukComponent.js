@@ -14,7 +14,7 @@ export class BarangMasukComponent extends Component {
     return (
       <>
         <Card>
-          <CardHeader title="Daftar Data Barang">
+          <CardHeader title="Daftar Barang Masuk">
             <CardHeaderToolbar>
               <FormBarangMasuk />
             </CardHeaderToolbar>
